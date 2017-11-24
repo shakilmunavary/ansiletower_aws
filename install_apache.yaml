@@ -15,5 +15,3 @@
     firewalld: service=http permanent=true state=enabled
   - name: start the firewalld service
     service: name=firewalld state=restarted
-
- python-firewall

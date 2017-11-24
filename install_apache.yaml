@@ -7,7 +7,14 @@
     yum: name=httpd
   - name: start the httpd service
     service: name=httpd state=started
+  - name: Install Ansible Python 2 Dependencies
+    with_items:
+    - python-firewall
+    dnf:
+      name: "{{item}}"
+      state: present
   - name: Open port 80
     firewalld: service=http permanent=true state=enabled
   - name: start the firewalld service
     service: name=firewalld state=restarted
+

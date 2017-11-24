@@ -8,7 +8,7 @@
   - name: start the httpd service
     service: name=httpd state=started
   - name: Install Ansible Python 2 Dependencies
-    yum: python-firewall
+    yum: name=python-firewall
   - name: Start firewall servic
     service: name=python-firewall state=started
   - name: Open port 80

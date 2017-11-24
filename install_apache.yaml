@@ -1,6 +1,7 @@
 ---
 - name: This sets up an httpd webserver
   hosts: tag_server_webserver
+  become: yes
   tasks:
   - name: Install the httpd rpm
     yum: name=httpd

@@ -1,6 +1,6 @@
 ---
 - name: This sets up an httpd webserver
-  hosts: tag_server_webserver
+  hosts: "tag_server_webserver*,tag_server_db*"
   become: yes
   tasks:
   - name: Install the httpd rpm

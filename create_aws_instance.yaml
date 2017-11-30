@@ -1,0 +1,29 @@
+---
+- name: Create a new Demo EC2 instance
+  hosts: localhost
+  gather_facts: False
+
+  vars:
+      region: us-east-2c
+      instance_type: t2.micro
+      ami: RHEL-7.4_HVM_GA-20170808-x86_64-2-Hourly2-GP2
+      keypair: einsteinish # pem file name
+  
+  tasks:
+
+    - name: Create an ec2 instance
+      ec2:
+         key_name: "{{ keypair }}"
+         group: launch-wizard-3  # security group name
+         instance_type: "{{ instance_type}}"
+         image: "{{ ami }}"
+         wait: true
+         region: "{{ region }}"
+         count: 1  # default
+         count_tag:
+            Name: ShakilAnsible
+         instance_tags:
+            Name: ShakilAnsible
+         vpc_subnet_id: vpc-b9e7fdd0
+         assign_public_ip: yes
+      register: ec2
